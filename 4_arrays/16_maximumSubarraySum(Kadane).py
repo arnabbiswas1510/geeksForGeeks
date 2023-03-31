@@ -10,4 +10,4 @@ def kadane(arr):
         maxSum=max(currSum,maxSum)
     return maxSum
 
-print(kadane([-2, -3, 4, -1, -2, 1, 5, -3]))
+print(kadane([1, -2, 3, -2]))

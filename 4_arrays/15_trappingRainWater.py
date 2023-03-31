@@ -21,18 +21,19 @@ def trappingRainWaterExtraSpace(arr):
 
 def trappingRainWater(arr):
     l,r=0,len(arr)-1
+    leftMax, rightMax = arr[l], arr[r]
     water=0
-    i = l if arr[l] < arr[r] else r
     while l < r:
-        water+=max(min(arr[l],arr[r])-arr[i],0) #Understand this
-        if arr[l] <= arr[r]:
-            l+=1
-            i=l
+        if leftMax < rightMax:
+            l += 1
+            leftMax = max(leftMax, arr[l])
+            water += leftMax - arr[l]
         else:
-            r-=1
-            i=r
+            r -= 1
+            rightMax = max(rightMax, arr[r])
+            water += rightMax - arr[r]
     return water
 
 print(trappingRainWater([2, 0, 2]))
-print(trappingRainWaterExtraSpace([3, 0, 2, 0, 4]))
-print(trappingRainWaterExtraSpace([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+print(trappingRainWater([3, 0, 2, 0, 4]))
+print(trappingRainWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
