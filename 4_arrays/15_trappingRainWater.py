@@ -34,6 +34,6 @@ def trappingRainWater(arr):
             water += rightMax - arr[r]
     return water
 
-print(trappingRainWater([2, 0, 2]))
+print(trappingRainWater([7,4,0,9]))
 print(trappingRainWater([3, 0, 2, 0, 4]))
 print(trappingRainWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))

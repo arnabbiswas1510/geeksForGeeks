@@ -5,7 +5,7 @@ But it only gives you the single largest profit, not the sum of all profits (wit
 Second implementation gives sum of all profits using valley peak approach (this is a diff problem). Valley peak is V Easy
 Third implementation uses Kadane's algo (max subarray sum) - For this you need to compute and provide pnl array
 pnl will have +ve and -ve nos similar to max subarray sum problem.
-Note kadane returns same results as valley peak approach. To alter this to true Kadane make line 44:
+Note kadane returns same results as valley peak approach. To alter this to true Kadane make line 45:
 currSum=max(arr[i], currSum+arr[i])
 """
 
@@ -19,8 +19,10 @@ def stockBuyAndSell1(arr):
             currDiff = max(currDiff,arr[j]-arr[i])
             maxDiff=max(maxDiff,currDiff)
         else:
+            print('Buy on %s and sell on %s' %(i,j-1))
             i=j
         j+=1
+    print('Buy on %s and sell on %s' %(i,j-1))
     return maxDiff
 
 #Valley Peak approach, very simple
@@ -42,9 +44,14 @@ def generatePnl(arr):
 def kadaneValleyPeak(arr):
     currSum, maxSum = 0, -float('inf')
     for i in range(len(arr)):
-        currSum=max(currSum, currSum+arr[i])
+        #currSum=max(currSum, currSum+arr[i])
+        currSum=max(arr[i], currSum+arr[i])
         maxSum=max(currSum,maxSum)
     return maxSum
 
-print(kadaneValleyPeak(generatePnl([100, 180, 260, 310, 40, 535, 695])))
-print(kadaneValleyPeak(generatePnl([4, 2, 2, 2, 4])))
+#print(stockBuyAndSell1([100, 180, 260, 310, 40, 535, 695]))
+#print(stockBuyAndSell2([100, 180, 260, 310, 40, 535, 695]))
+#print(kadaneValleyPeak(generatePnl([100, 180, 260, 310, 40, 535, 695])))
+#print(kadaneValleyPeak(generatePnl([4, 2, 2, 2, 4])))
+#print(stockBuyAndSell2([4, 2, 2, 2, 4]))
+stockBuyAndSell1([100,180,260,310,40,535,695])
